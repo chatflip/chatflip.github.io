@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>chatflip.dev - Resource Lens</title>
-  <meta name="description" content="Resource Lens - Monitor CPU, memory, and GPU usage directly in your VS Code status bar.">
+  <title>chatflip.dev</title>
+  <meta name="description" content="chatflip - Software Engineer. Computer Vision, Deep Learning, and Developer Tools.">
   <style>
     :root {
       --bg: #0d1117;
@@ -28,278 +28,234 @@
       line-height: 1.6;
     }
 
-    .hero {
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── Profile ── */
+    .profile {
       text-align: center;
-      padding: 80px 20px 60px;
-      background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
-      border-bottom: 1px solid var(--border);
+      padding: 80px 20px 48px;
     }
 
-    .hero-icon {
-      width: 96px;
-      height: 96px;
-      border-radius: 20px;
-      margin-bottom: 24px;
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      margin-bottom: 20px;
     }
 
-    .hero h1 {
-      font-size: 2.5rem;
+    .profile h1 {
+      font-size: 2rem;
       font-weight: 700;
-      margin-bottom: 12px;
       letter-spacing: -0.02em;
+      margin-bottom: 8px;
     }
 
-    .hero p {
-      font-size: 1.2rem;
+    .profile .bio {
+      font-size: 1.05rem;
       color: var(--text-muted);
-      max-width: 540px;
-      margin: 0 auto 32px;
+      max-width: 480px;
+      margin: 0 auto 20px;
     }
 
-    .badges {
+    .social-links {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
     }
 
-    .badge {
+    .social-links a {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.8rem;
       color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.15s;
     }
 
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
+    .social-links a:hover { color: var(--accent); text-decoration: none; }
 
-    .badge-dot.green { background: var(--green); }
-    .badge-dot.purple { background: var(--purple); }
-    .badge-dot.orange { background: var(--orange); }
-
-    .install-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.15s, border-color 0.15s;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--text-muted);
-    }
-
-    .btn svg {
+    .social-links svg {
       width: 18px;
       height: 18px;
       fill: currentColor;
     }
 
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 20px;
+    /* ── Section ── */
+    .section {
+      padding: 40px 20px;
     }
 
-    .screenshot-section {
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .screenshot-section img {
-      max-width: 100%;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-
-    .screenshot-caption {
-      margin-top: 12px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .features {
-      padding: 60px 20px;
-    }
-
-    .features h2 {
-      text-align: center;
-      font-size: 1.8rem;
-      margin-bottom: 40px;
-      letter-spacing: -0.01em;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-    }
-
-    .feature-card .icon {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-    }
-
-    .feature-card h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
-
-    .feature-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .settings-section {
-      padding: 60px 20px;
-    }
-
-    .settings-section h2 {
-      text-align: center;
-      font-size: 1.8rem;
-      margin-bottom: 32px;
-    }
-
-    .settings-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--surface);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .settings-table th,
-    .settings-table td {
-      padding: 14px 20px;
-      text-align: left;
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
     }
 
-    .settings-table th {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      background: var(--bg);
+    /* ── Project Cards ── */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .settings-table tr:last-child td {
-      border-bottom: none;
+    .project-card {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      transition: border-color 0.15s;
+      text-decoration: none;
+      color: var(--text);
     }
 
-    .settings-table code {
-      font-family: 'SFMono-Regular', Consolas, monospace;
-      font-size: 0.85rem;
-      color: var(--accent);
+    .project-card:hover {
+      border-color: var(--text-muted);
+      text-decoration: none;
     }
 
-    .settings-table td:last-child {
-      color: var(--text-muted);
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .project-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .project-header h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .project-card .desc {
       font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
     }
 
+    .project-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .install-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .install-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(88,166,255,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(88,166,255,0.2);
+      transition: background 0.15s;
+    }
+
+    .install-link:hover {
+      background: rgba(88,166,255,0.2);
+      text-decoration: none;
+    }
+
+    .install-link svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* ── Interests ── */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .interest-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .interest-item .label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .interest-item .value {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* ── Footer ── */
     footer {
       text-align: center;
       padding: 40px 20px;
       border-top: 1px solid var(--border);
+      margin-top: 20px;
       color: var(--text-muted);
       font-size: 0.85rem;
     }
 
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
     @media (max-width: 600px) {
-      .hero { padding: 60px 20px 40px; }
-      .hero h1 { font-size: 1.8rem; }
-      .hero p { font-size: 1rem; }
-      .features h2, .settings-section h2 { font-size: 1.4rem; }
+      .profile { padding: 60px 20px 36px; }
+      .profile h1 { font-size: 1.6rem; }
+      .project-header { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
   </style>
 </head>
 <body>
 
-  <section class="hero">
+  <section class="profile">
     <div class="container">
       <img
-        src="https://raw.githubusercontent.com/chatflip/resource-lens-extension/main/images/icon.png"
-        alt="Resource Lens icon"
-        class="hero-icon"
+        src="https://avatars.githubusercontent.com/u/26509537?s=200&v=4"
+        alt="chatflip"
+        class="avatar"
       >
-      <h1>Resource Lens</h1>
-      <p>Monitor CPU, memory, and GPU usage directly in your VS Code status bar.</p>
-
-      <div class="badges">
-        <span class="badge"><span class="badge-dot green"></span>v0.0.3</span>
-        <span class="badge"><span class="badge-dot purple"></span>Apache-2.0</span>
-        <span class="badge"><span class="badge-dot orange"></span>Windows / Linux / macOS</span>
-      </div>
-
-      <div class="install-buttons">
-        <a href="https://marketplace.visualstudio.com/items?itemName=chatflip.resource-lens" class="btn btn-primary">
-          <svg viewBox="0 0 24 24"><path d="M17.583.063a1.5 1.5 0 0 0-1.032.392 1.5 1.5 0 0 0-.001 0L8.17 8.199 4.46 5.289a1 1 0 0 0-1.265.057l-2.95 2.77a1 1 0 0 0 .006 1.47L3.7 12l-3.45 2.414a1 1 0 0 0-.006 1.47l2.95 2.77a1 1 0 0 0 1.265.057l3.71-2.91 8.38 7.744a1.5 1.5 0 0 0 1.033.392A1.5 1.5 0 0 0 19.1 22.5V1.5A1.5 1.5 0 0 0 17.583.063M17.1 5.2v13.6L9.3 12z"/></svg>
-          VS Code Marketplace
-        </a>
-        <a href="https://open-vsx.org/extension/chatflip/resource-lens" class="btn btn-secondary">
-          Open VSX
-        </a>
-        <a href="https://github.com/chatflip/resource-lens-extension" class="btn btn-secondary">
+      <h1>chatflip</h1>
+      <p class="bio">Software Engineer interested in Computer Vision and Deep Learning.</p>
+      <div class="social-links">
+        <a href="https://github.com/chatflip">
           <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
           GitHub
         </a>
@@ -307,100 +263,47 @@
     </div>
   </section>
 
-  <section class="screenshot-section">
+  <section class="section">
     <div class="container">
-      <img
-        src="https://raw.githubusercontent.com/chatflip/resource-lens-extension/main/images/statusbar.png"
-        alt="Resource Lens status bar screenshot"
-      >
-      <p class="screenshot-caption">CPU, memory, and GPU usage displayed in the status bar. Hover for detailed tooltips.</p>
-    </div>
-  </section>
+      <h2 class="section-title">Projects</h2>
+      <div class="project-list">
 
-  <section class="features">
-    <div class="container">
-      <h2>Features</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="icon">&#x1F4BB;</div>
-          <h3>CPU Monitoring</h3>
-          <p>Real-time CPU usage displayed directly in the status bar at a glance.</p>
+        <div class="project-card">
+          <div class="project-header">
+            <img
+              src="https://raw.githubusercontent.com/chatflip/resource-lens-extension/main/images/icon.png"
+              alt="Resource Lens"
+              class="project-icon"
+            >
+            <h3>Resource Lens</h3>
+          </div>
+          <p class="desc">VS Code extension that shows CPU, memory, and GPU usage in the status bar. Supports NVIDIA GPUs via nvidia-smi with interactive tooltips.</p>
+          <div class="project-meta">
+            <span class="tag"><span class="tag-dot" style="background:#3178c6"></span>TypeScript</span>
+            <span class="tag"><span class="tag-dot" style="background:var(--green)"></span>v0.0.3</span>
+            <span class="tag">Apache-2.0</span>
+          </div>
+          <div class="install-links">
+            <a href="https://marketplace.visualstudio.com/items?itemName=chatflip.resource-lens" class="install-link">
+              <svg viewBox="0 0 24 24"><path d="M17.583.063a1.5 1.5 0 0 0-1.032.392 1.5 1.5 0 0 0-.001 0L8.17 8.199 4.46 5.289a1 1 0 0 0-1.265.057l-2.95 2.77a1 1 0 0 0 .006 1.47L3.7 12l-3.45 2.414a1 1 0 0 0-.006 1.47l2.95 2.77a1 1 0 0 0 1.265.057l3.71-2.91 8.38 7.744a1.5 1.5 0 0 0 1.033.392A1.5 1.5 0 0 0 19.1 22.5V1.5A1.5 1.5 0 0 0 17.583.063M17.1 5.2v13.6L9.3 12z"/></svg>
+              Marketplace
+            </a>
+            <a href="https://open-vsx.org/extension/chatflip/resource-lens" class="install-link">Open VSX</a>
+            <a href="https://github.com/chatflip/resource-lens-extension" class="install-link">
+              <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              Source
+            </a>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="icon">&#x1F9E0;</div>
-          <h3>Memory Tracking</h3>
-          <p>Live memory consumption metrics so you always know your system load.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">&#x1F3AE;</div>
-          <h3>NVIDIA GPU Support</h3>
-          <p>Monitor GPU utilization, VRAM, and temperature via nvidia-smi. Auto-hides if unavailable.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">&#x1F4CA;</div>
-          <h3>Interactive Tooltips</h3>
-          <p>Hover over any metric for detailed bar charts and additional statistics.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">&#x23F1;&#xFE0F;</div>
-          <h3>Configurable Interval</h3>
-          <p>Adjust the refresh rate from 500ms up to any interval you prefer.</p>
-        </div>
-        <div class="feature-card">
-          <div class="icon">&#x1F527;</div>
-          <h3>Selective Display</h3>
-          <p>Toggle individual metrics on or off. Show only what matters to you.</p>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <section class="settings-section">
-    <div class="container">
-      <h2>Settings</h2>
-      <table class="settings-table">
-        <thead>
-          <tr>
-            <th>Setting</th>
-            <th>Default</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>resourceLens.updateIntervalMs</code></td>
-            <td><code>1000</code></td>
-            <td>Update interval in milliseconds (min 500)</td>
-          </tr>
-          <tr>
-            <td><code>resourceLens.showCpu</code></td>
-            <td><code>true</code></td>
-            <td>Show CPU usage in the status bar</td>
-          </tr>
-          <tr>
-            <td><code>resourceLens.showMemory</code></td>
-            <td><code>true</code></td>
-            <td>Show memory usage in the status bar</td>
-          </tr>
-          <tr>
-            <td><code>resourceLens.showGpu</code></td>
-            <td><code>true</code></td>
-            <td>Show GPU usage in the status bar</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
 
   <footer>
     <div class="container">
-      <div class="footer-links">
-        <a href="https://marketplace.visualstudio.com/items?itemName=chatflip.resource-lens">Marketplace</a>
-        <a href="https://open-vsx.org/extension/chatflip/resource-lens">Open VSX</a>
-        <a href="https://github.com/chatflip/resource-lens-extension">GitHub</a>
-        <a href="https://github.com/chatflip/resource-lens-extension/issues">Issues</a>
-      </div>
-      <p>&copy; 2025 chatflip. Licensed under Apache-2.0.</p>
+      <p>&copy; 2025 chatflip</p>
     </div>
   </footer>
 
