@@ -305,9 +305,10 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 chatflip</p>
+      <p>&copy; <span id="year">2026</span> chatflip</p>
     </div>
   </footer>
 
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
